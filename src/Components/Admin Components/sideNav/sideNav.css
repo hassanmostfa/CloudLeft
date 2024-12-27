@@ -1,0 +1,109 @@
+.sidebar {
+    height: calc(100% - 70px) !important;
+    width: 250px !important;
+}
+
+@media (min-width: 993px) {
+    
+    .sidebar-icon-only .sidebar {
+        width: 70px !important;
+    }
+}
+.sidebar .nav .nav-item .nav-link i.menu-icon{
+    margin-right: 10px !important;
+    font-size: 19px !important;
+}
+
+/* .sidebar .nav .nav-item.active > .nav-link .menu-title{
+    color: var(--active-color) !important;
+} */
+
+.sidebar .nav .nav-item .nav-link .menu-title {
+    font-weight: 600;
+    font-size: 14px !important;
+}
+
+
+.sidebar .nav .nav-item .nav-link .menu-title:hover {
+    color: var(--main-color) !important;
+}
+
+
+/* .sidebar .nav .nav-item .nav-link i.menu-arrow:before{
+    color: black !important;
+} */
+
+.sidebar .nav {
+    padding: 0;
+    margin-top: 70px;
+    margin-bottom: 0;
+}
+
+.user_name {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.sidebar .nav.sub-menu .nav-item .nav-link{
+    padding: 10px 20px !important;
+}
+
+.sidebar .nav .nav-item .nav-link i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+/* .sidebar .nav .nav-item .nav-link i.menu-arrow{
+    margin-right: 75px !important;
+} */
+/* .sidebar .nav .nav-item .active {
+    color: var(--main-color) !important;
+} */
+.sidebar .nav .nav-item .nav-link {
+    padding : 15px !important;
+}
+
+.sidebar .nav .nav-item .nav-link:hover {
+    color: var(--main-color) !important;
+}
+
+
+.sidebar .nav.sub-menu .nav-item .nav-link.active {
+    color: var(--sub-active-color) !important;
+    font-weight: 500;
+}
+
+.sidebar .nav.sub-menu .nav-item .nav-link{
+    background-color: transparent !important;
+}
+.nav-link .active .nav-item {
+    color: var(--main-color) !important;
+}
+
+.sidebar .nav .nav-item{
+    padding: 0 10px!important;
+}
+
+.sidebar .nav .nav-item.active i{
+    color: var(--main-color) !important;
+}
+
+nav li:hover span {
+    color: var(--main-color) !important;
+}
+
+.nav-item span , .sidebar .nav-item i{
+    color: var(--text-light-color) !important;
+}
+ .sidebar .nav-item .menu-arrow{
+    margin-left: 0 !important;
+}
+
+.nav-item:hover i {
+    color: var(--main-color) !important;
+}
+
+.nav-link span{
+    font-weight: 700;
+    font-size: 15px !important;
+}

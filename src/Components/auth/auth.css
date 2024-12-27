@@ -1,0 +1,84 @@
+.register .container  , .login .container {
+    background-color: white;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    /* width: 50% !important; */
+    max-width: 500px !important;
+    padding: 50px 20px;
+}
+.login .form-group{
+    margin-bottom: 10px !important;
+}
+.register .container {
+    margin-top: 50px;
+}
+
+.login .container {
+    margin-top: 100px;
+}
+
+.register .container h3 , .login .container h3{
+    color: var(--main-color);
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 100%;
+    font-weight: 700;
+    /* border-bottom: 1px solid var(--text-light-color); */
+    padding-bottom: 10px;
+}
+
+.container .form {
+    padding: 0px 15px !important;
+    width: 350px;
+    margin: 0 auto;
+}
+
+.container .form label  {
+    color: var(--main-color);
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.container .form input {
+    height: 30px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--text-light-color);
+    border-radius: 5px;
+    outline: none;
+    font-size: 14px;
+    font-weight: 500;
+    /* color: var(--main-color); */
+}
+
+.login-image{
+    background-image: url(../../images/Login.jpg);
+    background-size: cover;
+    background-position: center;
+    width: 65%;
+    height: 350px;
+    border-radius: 10px 0 0 10px;
+}
+
+.register-image{
+    background-image: url(../../images/Register.jpg);
+    background-size: cover;
+    background-position: center;
+    width: 65%;
+    height: 522px;
+    border-radius: 10px 0 0 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .login-image , .register-image{
+        display: none;
+    }
+
+    .login .container , .register .container {
+        width: 300px;
+    }
+    
+}

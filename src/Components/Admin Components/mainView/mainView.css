@@ -1,0 +1,18 @@
+.main-panel{
+    margin-top: 50px !important;
+    background-color: var(--main-bg-color) !important;
+}
+
+.page-title .page-title-icon{
+    background-color: var(--main-color) !important;
+}
+
+.content-wrapper{
+    background-color: var(--main-bg-color) !important;
+}
+
+.latest_users{
+    color: var(--main-color) !important;
+    font-weight: bold;
+    font-size: 20px !important;
+}

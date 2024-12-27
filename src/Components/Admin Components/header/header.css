@@ -1,0 +1,21 @@
+.navbar .navbar-brand-wrapper .navbar-brand img {
+    width: 80%;
+    height: 80px;
+    display: block;
+    margin: 20px auto 10px auto;
+}
+.navbar .navbar-brand-wrapper .navbar-brand {
+    padding: 0px !important;
+}
+
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu.navbar-dropdown {
+    color: var(--main-color) !important;
+}
+
+.preview-list .preview-item .preview-thumbnail .preview-icon , .preview-list .preview-item .preview-thumbnail {
+    margin-right: 10px;
+}
+
+.dropdown, .dropdown-center, .dropend, .dropstart, .dropup, .dropup-center , .nav-item {
+    color: var(--main-color) !important;
+}
