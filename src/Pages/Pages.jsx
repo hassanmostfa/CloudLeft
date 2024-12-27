@@ -16,16 +16,14 @@ const pages = () => {
   return (
     <div className="pages">
       <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<Protected Cmp={Login} />} />
-          
+        <Routes>          
          
-          <Route path="/admin/services" element={<ProtectedRoute><Services /></ProtectedRoute>} />
-          <Route path="/admin/add-service" element={<ProtectedRoute><AddService /></ProtectedRoute>} />
-          <Route path="/admin/edit-service/:id" element={<ProtectedRoute><EditService /></ProtectedRoute>} />
-          <Route path="/admin/bookings" element={<ProtectedRoute><Bookings /></ProtectedRoute>} />
-          <Route path="/admin/add-booking" element={<ProtectedRoute><AddBooking /></ProtectedRoute>} />
-          <Route path="/admin/edit-booking/:id" element={<ProtectedRoute><EditBooking /></ProtectedRoute>} />         
+          <Route path="/" element={<Services />} />
+          <Route path="/admin/add-service" element={<AddService />} />
+          <Route path="/admin/edit-service/:id" element={<EditService />} />
+          <Route path="/admin/bookings" element={<Bookings />} />
+          <Route path="/admin/add-booking" element={<AddBooking />} />
+          <Route path="/admin/edit-booking/:id" element={<EditBooking />} />         
         </Routes>
       </BrowserRouter>
     </div>
