@@ -19,7 +19,6 @@
                 <ul className="m-0">
                     <li aria-current="page">
                     <span />
-                    نظرة عامة{" "}
                     <i className="mdi mdi-alert-circle-outline icon-sm align-middle" />
                     </li>
                 </ul>

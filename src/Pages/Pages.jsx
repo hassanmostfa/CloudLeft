@@ -19,8 +19,8 @@ const pages = () => {
         <Routes>          
          
           <Route path="/" element={<Services />} />
-          <Route path="/admin/add-service" element={<AddService />} />
-          <Route path="/admin/edit-service/:id" element={<EditService />} />
+          <Route path="/admin/add-product" element={<AddService />} />
+          {/* <Route path="/admin/edit-service/:id" element={<EditService />} /> */}
           <Route path="/admin/bookings" element={<Bookings />} />
           <Route path="/admin/add-booking" element={<AddBooking />} />
           <Route path="/admin/edit-booking/:id" element={<EditBooking />} />         

@@ -46,7 +46,7 @@ const SideNav = ({ isSidebarOpen }) => {
               aria-controls="ui-basic"
             >
               <div>
-                <i class="fa fa-cutlery" aria-hidden="true" onClick={() => navigate("/admin/services")}></i>
+                <i class="fa fa-cutlery" aria-hidden="true" onClick={() => navigate("/")}></i>
                 <span className="menu-title" style={{ fontWeight: "700" }}>
                   Food Products
                 </span>
@@ -56,12 +56,12 @@ const SideNav = ({ isSidebarOpen }) => {
             <div className="collapse" id="services">
               <ul className="nav flex-column sub-menu">
                 <li className="nav-item">
-                  <Link className="nav-link" to="/admin/services">
+                  <Link className="nav-link" to="/">
                     All Products 
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/admin/add-service">
+                  <Link className="nav-link" to="/admin/add-product">
                      Add Product
                   </Link>
                 </li>
@@ -93,7 +93,7 @@ const SideNav = ({ isSidebarOpen }) => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/admin/add-booking">
+                  <Link className="nav-link" to="/admin/add-product">
                      Add Product
                   </Link>
                 </li>

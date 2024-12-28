@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-const baseUrl = 'https://xealkhalej-backend.alwajez.com/api/user';
+const baseUrl = 'https://forthcoming-felipa-one4zero-74bd59c3.koyeb.app/api';
 // Define the API slice
 export const servicesApi = createApi({
   reducerPath: 'servicesApi',
@@ -15,7 +15,7 @@ export const servicesApi = createApi({
   }),
   endpoints: (builder) => ({
     getServices: builder.query({
-      query: () => '/services',
+      query: () => '/data/food',
     }),
     getServiceById: builder.query({
       query: (id) => `/show-service/${id}`,
@@ -23,7 +23,7 @@ export const servicesApi = createApi({
     
     createService: builder.mutation({
       query: (newService) => ({
-        url: '/add-service',
+        url: '/data/add-items',
         method: 'POST',
         body: newService,
       }),
