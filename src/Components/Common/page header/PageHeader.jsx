@@ -33,7 +33,7 @@ const PageHeader = ({ name, icon }) => {
       setUploadMessage(""); // Clear previous messages
 
       const response = await axios.post(
-        "https://forthcoming-felipa-one4zero-74bd59c3.koyeb.app/api/upload",
+        "https://159.65.120.142/api/upload",
         formData,
         {
           headers: {

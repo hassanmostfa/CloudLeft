@@ -85,7 +85,7 @@ const Bookings = () => {
                         <div className="loader"></div>
                       </div>
                     ) : error ? (
-                      <div>Error loading users</div> // Display error message if there is an error
+                      <div>Error loading Products</div> // Display error message if there is an error
                     ) : (
                       <div>
                         <table className="table text-center table-hover">
