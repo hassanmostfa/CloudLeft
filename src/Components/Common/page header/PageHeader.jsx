@@ -42,7 +42,7 @@ const PageHeader = ({ name, icon }) => {
         }
       );
 
-      if (response.status === 524) {
+      if (response.status === 200) {
         // disable modal
         setIsModalOpen(false);
         // Add SweetAlert here for success
