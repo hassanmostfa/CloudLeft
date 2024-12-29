@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-const baseUrl = 'https://forthcoming-felipa-one4zero-74bd59c3.koyeb.app/api';
+const baseUrl = 'http://159.65.120.142:3000/api';
 // Define the API slice
 export const servicesApi = createApi({
   reducerPath: 'servicesApi',

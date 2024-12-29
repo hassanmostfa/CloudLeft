@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // Define the base URL of your Laravel API
-const baseUrl = "https://forthcoming-felipa-one4zero-74bd59c3.koyeb.app/api";
+const baseUrl = "http://159.65.120.142:3000/api";
 
 export const bookingsApi = createApi({
   reducerPath: "bookingsApi",
