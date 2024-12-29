@@ -56,7 +56,7 @@ const PageHeader = ({ name, icon }) => {
         Swal.fire({
             icon: "error",
             title: "Error",
-            text: "An error occurred during file upload.",
+            text: "An error occurred during file upload." + response.statusText + " " + response.status,
         });
       }
     } catch (error) {
