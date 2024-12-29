@@ -20,16 +20,7 @@ const SideNav = ({ isSidebarOpen }) => {
               {/* <Link className="navbar-brand brand-logo" to="#"><img src={logo} alt="logo" /></Link> */}
               {/* <Link className="navbar-brand brand-logo-mini" to="#"><img src={logo} alt="logo" /></Link> */}
               <Link className="d-flex align-items-center justify-content-center" to="#">
-                <img
-                  src={logo}
-                  alt="logo"
-                  style={{
-                    width: "100%",
-                    margin: "auto",
-                    height: "100px",
-                    objectFit: "contain",
-                  }}
-                />
+                <h3 style={{ fontWeight: "700" , color: "var(--main-color)" }} className="text-center">CLoudleft Team</h3>
               </Link>
             </NavLink>
            
