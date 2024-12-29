@@ -72,13 +72,13 @@ const AddService = () => {
       let apiUrl;
       switch (level) {
         case "level1":
-          apiUrl = "https://forthcoming-felipa-one4zero-74bd59c3.koyeb.app/api/categories/maincategories/Non Food"; // API for level 1 categories
+          apiUrl = "http://159.65.120.142:3000/api/categories/maincategories/Non Food"; // API for level 1 categories
           break;
         case "level2":
-          apiUrl = `https://forthcoming-felipa-one4zero-74bd59c3.koyeb.app/api/categories/subcategories/${parentId}`; // API for level 2 categories
+          apiUrl = `http://159.65.120.142:3000/api/categories/subcategories/${parentId}`; // API for level 2 categories
           break;
         case "level3":
-          apiUrl = `https://forthcoming-felipa-one4zero-74bd59c3.koyeb.app/api/categories/subsubcategories/${parentId}`; // API for level 3 categories
+          apiUrl = `http://159.65.120.142:3000/api/categories/subsubcategories/${parentId}`; // API for level 3 categories
           break;
         default:
           return;
