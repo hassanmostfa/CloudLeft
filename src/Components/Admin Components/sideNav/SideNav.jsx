@@ -88,7 +88,7 @@ const SideNav = ({ isSidebarOpen }) => {
             <div className="collapse" id="bookings">
               <ul className="nav flex-column sub-menu">
                 <li className="nav-item">
-                  <Link className="nav-link" to="/admin/bookings">
+                  <Link className="nav-link" to="/admin/non-food/products">
                     All Products
                   </Link>
                 </li>

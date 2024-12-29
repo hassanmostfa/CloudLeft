@@ -61,7 +61,7 @@ const Bookings = () => {
         <SideNav />
         <div className="add_user_container">
           <div style={{ marginTop: "30px" }}>
-            <PageHeader name="Food Products" icon="fa fa-cogs" />
+            <PageHeader name="Non Food Products" icon="fa fa-cogs" />
           </div>
           <div className="row content-wrapper">
             <div className="col-12 grid-margin">
@@ -72,7 +72,7 @@ const Bookings = () => {
                       className="fa fa-angle-double-left"
                       aria-hidden="true"
                     ></i>
-                    All Food Products
+                    All Non Food Products
                     <i
                       className="fa fa-angle-double-right"
                       aria-hidden="true"
@@ -94,6 +94,7 @@ const Bookings = () => {
                               <th># </th>
                               <th> Code </th>
                               <th> Brand </th>
+                              <th> En Categorie 1 </th>
                               <th> Name </th>
                               <th> Price </th>
                               <th> Action </th>
@@ -112,23 +113,19 @@ const Bookings = () => {
                                   </td>
                                   <td>{service.Barcode}</td>
                                   <td>{service.Brand}</td>
+                                  <td>{service["En Categorie 1"]}</td>
                                   <td>{service["Name-En"]}</td>
                                   <td>{service["Pc Price"]}</td>
                                   <td>
-                                    <button
-                                      className="btn text-success"
-                                      title="تعديل"
-                                      onClick={() =>
-                                        navigate(
-                                          `/admin/edit-service/${service.id}`
-                                        )
-                                      }
-                                    >
-                                      <i
-                                        className="fa fa-edit"
-                                        aria-hidden="true"
-                                      ></i>
-                                    </button>
+                                  <button
+                                    className="btn"
+                                    title="show"
+                                    style={{ color: "#384a47" }}
+                                    onClick={() => navigate(`/admin/product/show`, { state: { service } })}
+                                  >
+                                    <i className="fa fa-eye" aria-hidden="true"></i>
+                                  </button>
+                                  
                                     <button
                                       className="btn text-danger"
                                       onClick={() => handleDelete(service.id)}

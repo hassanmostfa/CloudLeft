@@ -12,6 +12,7 @@ import AddBooking from "./Dashboard Pages/bookings/AddBooking";
 import ProtectedRoute from "../Components/protectedRoute/ProtectedRoute";
 import EditService from "./Dashboard Pages/services/EditService";
 import EditBooking from "./Dashboard Pages/bookings/EditBooking";
+import ShowProduct from "../Components/Common/ShowProduct";
 const pages = () => {
   return (
     <div className="pages">
@@ -21,9 +22,10 @@ const pages = () => {
           <Route path="/" element={<Services />} />
           <Route path="/admin/add-product" element={<AddService />} />
           {/* <Route path="/admin/edit-service/:id" element={<EditService />} /> */}
-          <Route path="/admin/bookings" element={<Bookings />} />
+          <Route path="/admin/non-food/products" element={<Bookings />} />
           <Route path="/admin/add-booking" element={<AddBooking />} />
-          <Route path="/admin/edit-booking/:id" element={<EditBooking />} />         
+          <Route path="/admin/edit-booking/:id" element={<EditBooking />} /> 
+          <Route path="/admin/product/show" element={<ShowProduct />} />        
         </Routes>
       </BrowserRouter>
     </div>

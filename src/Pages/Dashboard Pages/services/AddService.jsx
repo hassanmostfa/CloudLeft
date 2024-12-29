@@ -4,12 +4,20 @@ import SideNav from "../../../Components/Admin Components/sideNav/SideNav";
 import PageHeader from "../../../Components/Common/page header/PageHeader";
 import { useNavigate } from "react-router-dom";
 import { useCreateServiceMutation } from "../../../api/servicesSlice";
+import Swal from "sweetalert2";
 
 const AddService = () => {
+  const [itemType, setItemType] = useState("Food");  // Set initial value to "Food"
+
+  // Handle change in selection
+  const handleTypeChange = (e) => {
+    setItemType(e.target.value);
+  };
+
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     item: {
-      item_type: "Non Food",
+      item_type: itemType,
       sku_ERP: "",
       barcode: "",
       en_categorie1: "",
@@ -145,7 +153,13 @@ const AddService = () => {
         "size": formData.item.size,
         "capacity": formData.item.capacity
     } }).unwrap();
-      navigate("/");
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "Item has been added successfully.",
+      }).then(() => {
+          navigate("/");
+      })
     } catch (err) {
       setError(err);
     }
@@ -180,13 +194,15 @@ const AddService = () => {
                     <label htmlFor="item_type" className="col-form-label">
                       Item Type
                     </label>
-                    <input
-                      type="text"
-                        className="form-control"
-                        id="item_type"
-                        value="Non Food"
-                        disabled
-                      />
+                    <select
+                      id="item_type"
+                      className="form-control"
+                      value={itemType}  // Bind state to the value
+                      onChange={handleTypeChange}  // Update state when selection changes
+                    >
+                      <option value="Food">Food</option>
+                      <option value="Non-Food">Non-Food</option>
+                    </select>
                     </div>
                   
                   

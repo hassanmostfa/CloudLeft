@@ -96,13 +96,15 @@ const Services = () => {
                                   <td>{service["Name-En"]}</td>
                                   <td>{service["Pc Price"]}</td>
                                   <td>
-                                    <button
-                                      className="btn text-success"
-                                      title="تعديل"
-                                      onClick={() => navigate(`/admin/edit-service/${service.id}`)}
-                                    >
-                                      <i className="fa fa-edit" aria-hidden="true"></i>
-                                    </button>
+                                  <button
+                                    className="btn"
+                                    title="show"
+                                    style={{ color: "#384a47" }}
+                                    onClick={() => navigate(`/admin/product/show`, { state: { service } })}
+                                  >
+                                    <i className="fa fa-eye" aria-hidden="true"></i>
+                                  </button>
+                                  
                                     <button
                                       className="btn text-danger"
                                       onClick={() => handleDelete(service.id)}
