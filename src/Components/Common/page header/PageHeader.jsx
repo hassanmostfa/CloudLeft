@@ -98,7 +98,7 @@ const PageHeader = ({ name, icon }) => {
           </button>
           <Link
             className="btn btn-outline-light mx-2"
-            to="http://159.65.120.142:3000/api/export"
+            to="https://159.65.120.142/api/export"
           >
             <i className="fa fa-download mx-2" aria-hidden="true"></i>
             Export

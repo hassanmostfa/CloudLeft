@@ -71,7 +71,7 @@ const Services = () => {
                         <div className="loader"></div>
                       </div>
                     ) : error ? (
-                      <div>Error loading users</div> // Display error message if there is an error
+                      <div>Error loading Products</div> // Display error message if there is an error
                     ) : (
                       <div>
                         <table className="table text-center table-hover">
@@ -104,7 +104,7 @@ const Services = () => {
                                   >
                                     <i className="fa fa-eye" aria-hidden="true"></i>
                                   </button>
-                                  
+
                                     <button
                                       className="btn text-danger"
                                       onClick={() => handleDelete(service.id)}
