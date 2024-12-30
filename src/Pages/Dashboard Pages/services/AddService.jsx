@@ -193,10 +193,12 @@ const AddService = () => {
                   <div className="col-md-6">
                     <label htmlFor="item_type" className="col-form-label">
                       Item Type
+                      <span className="text-danger" title="this field is required">*</span>
                     </label>
                     <select
                       id="item_type"
                       className="form-control"
+                      required
                       value={itemType}  // Bind state to the value
                       onChange={handleTypeChange}  // Update state when selection changes
                     >
@@ -209,9 +211,11 @@ const AddService = () => {
                     <div className="col-md-6">
                       <label htmlFor="sku_ERP" className="col-form-label">
                         SKU ERP
+                        <span className="text-danger" title="this field is required">*</span>
                       </label>
                       <input
                         type="text"
+                        required
                         className="form-control"
                         id="sku_ERP"
                         name="sku_ERP"
@@ -224,9 +228,11 @@ const AddService = () => {
                     <div className="col-md-6">
                       <label htmlFor="barcode" className="col-form-label">
                         Barcode
+                        <span className="text-danger" title="this field is required">*</span>
                       </label>
                       <input
                         type="text"
+                        required
                         className="form-control"
                         id="barcode"
                         name="barcode"
@@ -239,10 +245,12 @@ const AddService = () => {
                     <div className="col-md-6">
                       <label htmlFor="en_categorie1" className="col-form-label">
                         First Category
+                        <span className="text-danger" title="this field is required">*</span>
                       </label>
                       <select
                         className="form-control"
                         id="en_categorie1"
+                        required
                         name="en_categorie1"
                         value={formData.item.en_categorie1}
                         onChange={handleChange}
@@ -301,10 +309,12 @@ const AddService = () => {
                     <div className="col-md-6">
                       <label htmlFor="name_en" className="col-form-label">
                         English Name
+                        <span className="text-danger" title="this field is required">*</span>
                       </label>
                       <input
                         type="text"
                         className="form-control"
+                        required
                         id="name_en"
                         name="name_en"
                         value={formData.item.name_en}
@@ -316,10 +326,12 @@ const AddService = () => {
                     <div className="col-md-6">
                       <label htmlFor="name_ar" className="col-form-label">
                         Arabic Name
+                        <span className="text-danger" title="this field is required">*</span>
                       </label>
                       <input
                         type="text"
                         className="form-control"
+                        required
                         id="name_ar"
                         name="name_ar"
                         value={formData.item.name_ar}
@@ -608,7 +620,7 @@ const AddService = () => {
                       />
                     </div>
                   <div className="col-md-12 mt-4">
-                    <button type="submit" className="btn  btn-primary mr-2 w-100">
+                    <button type="submit" className="btn  btn-success mr-2 w-100">
                       Submit
                     </button>
                   </div>

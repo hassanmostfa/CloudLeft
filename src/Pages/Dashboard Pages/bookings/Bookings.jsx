@@ -1,55 +1,82 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../../Components/Admin Components/header/Header";
 import SideNav from "../../../Components/Admin Components/sideNav/SideNav";
-import img1 from "../../../images/Logo.png";
 import PageHeader from "../../../Components/Common/page header/PageHeader";
-import {
-  useDeleteBookingMutation,
-  useGetBookingsQuery,
-} from "../../../api/bookingSlice";
-import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Bookings = () => {
-  const {
-    data: bookings,
-    isLoading,
-    isError,
-    error,
-    refetch,
-  } = useGetBookingsQuery();
-   const [currentPage, setCurrentPage] = useState(0);
-    const itemsPerPage = 40;
-  const [deleteBooking] = useDeleteBookingMutation();
   const navigate = useNavigate();
+  const [bookings, setBookings] = useState([]);
+  const [filteredBookings, setFilteredBookings] = useState([]); // For storing filtered bookings
+  const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 40;
+
   useEffect(() => {
+    fetchBookings();
+    fetchCategories();
     document.body.classList.remove("sidebar-icon-only"); // Close sidebar on page change
   }, []);
-  useEffect(() => {
-    refetch();
-  }, [refetch]);
-  const handleDelete = async (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "Cancel",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        try {
-          await deleteBooking(id).unwrap();
-          refetch();
-          Swal.fire("Deleted!", "Booking has been deleted successfully.", "success");
-        } catch (error) {
-          Swal.fire("Error!", "Something went wrong while trying to delete the booking.", "error");
-        }
-      }
-    });
+
+  const fetchBookings = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await axios.get("https://back.testcls.pro/api/data/non-food");
+      const bookingsData = response.data.data || [];
+      setBookings(bookingsData); // Store all bookings
+      setFilteredBookings(bookingsData); // Initially set filtered bookings to all bookings
+    } catch (err) {
+      setError("Failed to load bookings");
+    } finally {
+      setIsLoading(false);
+    }
   };
+
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get("https://back.testcls.pro/api/categories/maincategories/Non Food");
+      setCategories(response.data.data || []); // Assuming categories are in response.data.data
+    } catch (err) {
+      setCategories([]); // If the fetch fails, keep an empty list
+    }
+  };
+
+  const handleSearch = (e) => {
+    const query = e.target.value;
+    setSearchTerm(query);
+    filterBookings(query, selectedCategory); // Filter bookings with search term and category
+  };
+
+  const handleCategoryChange = (e) => {
+    const category = e.target.value;
+    setSelectedCategory(category);
+    filterBookings(searchTerm, category); // Filter bookings with selected category and search term
+  };
+
+  const filterBookings = (query, category) => {
+    let filtered = bookings;
+
+    if (query) {
+      filtered = filtered.filter((booking) =>
+        booking["Name-En"].toLowerCase().includes(query.toLowerCase()) ||
+        booking.Brand.toLowerCase().includes(query.toLowerCase()) ||
+        booking.Barcode.toLowerCase().includes(query.toLowerCase())
+      );
+    }
+
+    if (category) {
+      filtered = filtered.filter((booking) => booking["En Categorie 1"] === category);
+    }
+
+    setFilteredBookings(filtered); // Set filtered bookings
+  };
+
   const changePage = (page) => {
     setCurrentPage(page);
   };
@@ -68,89 +95,91 @@ const Bookings = () => {
               <div className="card">
                 <div className="p-3">
                   <h3 className="latest_users mt-2 mb-3 text-center">
-                    <i
-                      className="fa fa-angle-double-left"
-                      aria-hidden="true"
-                    ></i>
+                    <i className="fa fa-angle-double-left" aria-hidden="true"></i>
                     All Non Food Products
-                    <i
-                      className="fa fa-angle-double-right"
-                      aria-hidden="true"
-                    ></i>
-                    <hr />
+                    <i className="fa fa-angle-double-right" aria-hidden="true"></i>
                   </h3>
+                  <hr />
+                  {/* Filters */}
+                  <div className="row mb-3">
+                    {/* Search Input */}
+                    <div className="col-md-6 d-flex align-items-center position-relative">
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Search by name or brand"
+                        value={searchTerm}
+                        onChange={handleSearch}
+                      />
+                      <i style={{ left: "440px", color: "#384a47" }} className="fa fa-search position-absolute" aria-hidden="true"></i>
+                    </div>
+                    {/* Category Select */}
+                    <div className="col-md-6">
+                      <select className="form-control" value={selectedCategory} onChange={handleCategoryChange}>
+                        <option value="">All Categories</option>
+                        {categories.map((category) => (
+                          <option key={category.id} value={category.name_en}>
+                            {category.name_en}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
                   <div className="table-responsive">
                     {isLoading ? (
                       <div className="center-loader">
                         <div className="loader"></div>
                       </div>
                     ) : error ? (
-                      <div>Error loading Products</div> // Display error message if there is an error
+                      <div>{error}</div> // Display error message if there is an error
                     ) : (
                       <div>
                         <table className="table text-center table-hover">
                           <thead className="table-dark">
                             <tr style={{ fontWeight: "bold" }}>
-                              <th># </th>
-                              <th> Code </th>
-                              <th> Brand </th>
-                              <th> En Categorie 1 </th>
-                              <th> Name </th>
-                              <th> Price </th>
-                              <th> Action </th>
+                              <th>#</th>
+                              <th>Code</th>
+                              <th>Brand</th>
+                              <th>En Category 1</th>
+                              <th>Name</th>
+                              <th>Price</th>
+                              <th>Action</th>
                             </tr>
                           </thead>
                           <tbody>
-                            {bookings.data
-                              .slice(
-                                currentPage * itemsPerPage,
-                                (currentPage + 1) * itemsPerPage
-                              )
-                              .map((service, index) => (
-                                <tr key={service.id}>
+                            {filteredBookings
+                              .slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
+                              .map((product, index) => (
+                                <tr key={product.id}>
+                                  <td>{currentPage * itemsPerPage + index + 1}</td>
+                                  <td>{product.Barcode}</td>
+                                  <td>{product.Brand}</td>
+                                  <td>{product["En Categorie 1"]}</td>
+                                  <td>{product["Name-En"]}</td>
+                                  <td>{product["Pc Price"]}</td>
                                   <td>
-                                    {currentPage * itemsPerPage + index + 1}{" "}
-                                  </td>
-                                  <td>{service.Barcode}</td>
-                                  <td>{service.Brand}</td>
-                                  <td>{service["En Categorie 1"]}</td>
-                                  <td>{service["Name-En"]}</td>
-                                  <td>{service["Pc Price"]}</td>
-                                  <td>
-                                  <button
-                                    className="btn"
-                                    title="show"
-                                    style={{ color: "#384a47" }}
-                                    onClick={() => navigate(`/admin/product/show`, { state: { service } })}
-                                  >
-                                    <i className="fa fa-eye" aria-hidden="true"></i>
-                                  </button>
-                                  
                                     <button
-                                      className="btn text-danger"
-                                      onClick={() => handleDelete(service.id)}
-                                      title="حذف"
+                                      className="btn"
+                                      title="show"
+                                      style={{ color: "#384a47" }}
+                                      onClick={() =>
+                                        navigate(`/admin/product/show/${product["Barcode"]}`, { state: { service: product || null } })
+                                      }
                                     >
-                                      <i
-                                        className="fa fa-trash"
-                                        aria-hidden="true"
-                                      ></i>
+                                      <i className="fa fa-eye" aria-hidden="true"></i>
                                     </button>
                                   </td>
                                 </tr>
                               ))}
                           </tbody>
                         </table>
-                        <div className="pagination d-flex justify-content-center w-100" style={{overflow:"auto"}}>
-                          {Array.from(
-                            Array(
-                              Math.ceil(bookings.data.length / itemsPerPage)
-                            ).keys()
-                          ).map((page) => (
+
+                        {/* Pagination */}
+                        <div className="pagination d-flex justify-content-center">
+                          {Array.from(Array(Math.ceil(filteredBookings.length / itemsPerPage)).keys()).map((page) => (
                             <button
-                              className={`btn mx-1 btn-outline-dark ${
-                                page === currentPage ? "active" : ""
-                              }`}
+                              className={`btn mx-1 btn-outline-dark ${page === currentPage ? "active" : ""}`}
                               key={page + 1}
                               onClick={() => changePage(page)}
                             >

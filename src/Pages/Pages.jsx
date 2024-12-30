@@ -25,7 +25,7 @@ const pages = () => {
           <Route path="/admin/non-food/products" element={<Bookings />} />
           <Route path="/admin/add-booking" element={<AddBooking />} />
           <Route path="/admin/edit-booking/:id" element={<EditBooking />} /> 
-          <Route path="/admin/product/show" element={<ShowProduct />} />        
+          <Route path="/admin/product/show/:id" element={<ShowProduct />} />        
         </Routes>
       </BrowserRouter>
     </div>
