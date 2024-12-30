@@ -8,7 +8,7 @@ import axios from "axios";
 const Bookings = () => {
   const navigate = useNavigate();
   const [bookings, setBookings] = useState([]);
-  const [filteredBookings, setFilteredBookings] = useState([]); // For storing filtered bookings
+  const [filteredBookings, setFilteredBookings] = useState([]);
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,7 +20,7 @@ const Bookings = () => {
   useEffect(() => {
     fetchBookings();
     fetchCategories();
-    document.body.classList.remove("sidebar-icon-only"); // Close sidebar on page change
+    document.body.classList.remove("sidebar-icon-only");
   }, []);
 
   const fetchBookings = async () => {
@@ -29,8 +29,8 @@ const Bookings = () => {
     try {
       const response = await axios.get("https://back.testcls.pro/api/data/non-food");
       const bookingsData = response.data.data || [];
-      setBookings(bookingsData); // Store all bookings
-      setFilteredBookings(bookingsData); // Initially set filtered bookings to all bookings
+      setBookings(bookingsData);
+      setFilteredBookings(bookingsData);
     } catch (err) {
       setError("Failed to load bookings");
     } finally {
@@ -41,40 +41,44 @@ const Bookings = () => {
   const fetchCategories = async () => {
     try {
       const response = await axios.get("https://back.testcls.pro/api/categories/maincategories/Non Food");
-      setCategories(response.data.data || []); // Assuming categories are in response.data.data
+      setCategories(response.data.data || []);
     } catch (err) {
-      setCategories([]); // If the fetch fails, keep an empty list
+      setCategories([]);
     }
   };
 
+  // Function to filter bookings by search term
   const handleSearch = (e) => {
     const query = e.target.value;
     setSearchTerm(query);
-    filterBookings(query, selectedCategory); // Filter bookings with search term and category
+    applyFilters(query, selectedCategory);
   };
 
+  // Function to filter bookings by category
   const handleCategoryChange = (e) => {
     const category = e.target.value;
     setSelectedCategory(category);
-    filterBookings(searchTerm, category); // Filter bookings with selected category and search term
+    applyFilters(searchTerm, category);
   };
 
-  const filterBookings = (query, category) => {
-    let filtered = bookings;
+  // Function to apply filters
+  const applyFilters = (query, category) => {
+    const lowerCaseQuery = query.toLowerCase();
+    const filtered = bookings.filter((booking) => {
+      const name = booking["Name-En"] || "";
+      const brand = booking.Brand || "";
+      const barcode = booking.Barcode || "";
+      // Assuming the category property in the bookings data is "En Categorie 1"
+      const categoryMatch = category? booking["En Categorie 1"] === category : true;
 
-    if (query) {
-      filtered = filtered.filter((booking) =>
-        booking["Name-En"].toLowerCase().includes(query.toLowerCase()) ||
-        booking.Brand.toLowerCase().includes(query.toLowerCase()) ||
-        booking.Barcode.toLowerCase().includes(query.toLowerCase())
+      return (
+        categoryMatch &&
+        (name.toLowerCase().includes(lowerCaseQuery) ||
+          brand.toLowerCase().includes(lowerCaseQuery) ||
+          barcode.toLowerCase().includes(lowerCaseQuery))
       );
-    }
-
-    if (category) {
-      filtered = filtered.filter((booking) => booking["En Categorie 1"] === category);
-    }
-
-    setFilteredBookings(filtered); // Set filtered bookings
+    });
+    setFilteredBookings(filtered);
   };
 
   const changePage = (page) => {
@@ -111,7 +115,11 @@ const Bookings = () => {
                         value={searchTerm}
                         onChange={handleSearch}
                       />
-                      <i style={{ left: "440px", color: "#384a47" }} className="fa fa-search position-absolute" aria-hidden="true"></i>
+                      <i
+                        style={{ left: "440px", color: "#384a47" }}
+                        className="fa fa-search position-absolute"
+                        aria-hidden="true"
+                      ></i>
                     </div>
                     {/* Category Select */}
                     <div className="col-md-6">
@@ -127,12 +135,12 @@ const Bookings = () => {
                   </div>
 
                   <div className="table-responsive">
-                    {isLoading ? (
+                    {isLoading? (
                       <div className="center-loader">
                         <div className="loader"></div>
                       </div>
-                    ) : error ? (
-                      <div>{error}</div> // Display error message if there is an error
+                    ) : error? (
+                      <div>{error}</div>
                     ) : (
                       <div>
                         <table className="table text-center table-hover">
@@ -149,8 +157,8 @@ const Bookings = () => {
                           </thead>
                           <tbody>
                             {filteredBookings
-                              .slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
-                              .map((product, index) => (
+                             .slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
+                             .map((product, index) => (
                                 <tr key={product.id}>
                                   <td>{currentPage * itemsPerPage + index + 1}</td>
                                   <td>{product.Barcode}</td>
@@ -164,7 +172,9 @@ const Bookings = () => {
                                       title="show"
                                       style={{ color: "#384a47" }}
                                       onClick={() =>
-                                        navigate(`/admin/product/show/${product["Barcode"]}`, { state: { service: product || null } })
+                                        navigate(`/admin/product/show/${product["Barcode"]}`, {
+                                          state: { service: product || null },
+                                        })
                                       }
                                     >
                                       <i className="fa fa-eye" aria-hidden="true"></i>
@@ -179,7 +189,7 @@ const Bookings = () => {
                         <div className="pagination d-flex justify-content-center">
                           {Array.from(Array(Math.ceil(filteredBookings.length / itemsPerPage)).keys()).map((page) => (
                             <button
-                              className={`btn mx-1 btn-outline-dark ${page === currentPage ? "active" : ""}`}
+                              className={`btn mx-1 btn-outline-dark ${page === currentPage? "active" : ""}`}
                               key={page + 1}
                               onClick={() => changePage(page)}
                             >

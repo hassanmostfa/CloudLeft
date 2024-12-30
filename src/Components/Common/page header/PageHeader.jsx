@@ -79,7 +79,7 @@ const PageHeader = ({ name, icon }) => {
       <div className="container d-flex align-items-center justify-content-between">
         {/* Title */}
         <div className="title">
-          <h3>
+          <h3 className="page_header-title">
             <span className="page-title-icon bg-gradient-primary text-white me-2 mx-2">
               <i className={icon} />
             </span>{" "}
@@ -88,10 +88,11 @@ const PageHeader = ({ name, icon }) => {
         </div>
 
         {/* Links for Import and Export */}
-        <div>
+        <div className="d-flex align-items-center justify-content-end">
           <button
             className="btn btn-outline-warning mx-2"
             onClick={() => setIsModalOpen(true)}
+            style={{ width: "110px" }}
           >
             <i className="fa fa-upload mx-2" aria-hidden="true"></i>
             Import
@@ -99,6 +100,7 @@ const PageHeader = ({ name, icon }) => {
           <Link
             className="btn btn-outline-light mx-2"
             to="https://back.testcls.pro/api/export"
+            style={{ width: "110px" }}
           >
             <i className="fa fa-download mx-2" aria-hidden="true"></i>
             Export

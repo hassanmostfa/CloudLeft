@@ -35,7 +35,7 @@ const ShowProduct = () => {
           <div className="card m-4 p-4">
             <h3>Product Details</h3>
             <hr />
-            <table className="table table-bordered table-striped">
+            <table className="table table-responsive table-bordered table-striped">
               <thead className="thead-dark">
                 <tr>
                   <th>Attribute</th>
