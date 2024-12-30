@@ -51,11 +51,6 @@ const SideNav = ({ isSidebarOpen }) => {
                     All Products 
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/admin/add-product">
-                     Add Product
-                  </Link>
-                </li>
 
               </ul>
             </div>
@@ -83,25 +78,19 @@ const SideNav = ({ isSidebarOpen }) => {
                     All Products
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/admin/add-product">
-                     Add Product
-                  </Link>
-                </li>
-
               </ul>
             </div>
           </li>
           
-{/* 
+
           <li className="nav-item" onClick={() => handleLogout()}>
-            <Link className="nav-link" to="/login" >
-            <i className="fa fa-sign-out" aria-hidden="true" />
+            <Link className="nav-link" to="/admin/add-product" >
+            <i className="fa fa-plus-circle" aria-hidden="true" />
             <span className="menu-title" style={{ fontWeight: "700" }}>
-              تسجيل الخروج
+              Add Product 
             </span>
             </Link>
-          </li> */}
+          </li>
         </ul>
       </nav>
     </div>

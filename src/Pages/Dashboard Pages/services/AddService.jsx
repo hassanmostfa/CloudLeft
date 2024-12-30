@@ -72,13 +72,13 @@ const AddService = () => {
       let apiUrl;
       switch (level) {
         case "level1":
-          apiUrl = "https://159.65.120.142/api/categories/maincategories/Non Food"; // API for level 1 categories
+          apiUrl = "https://back.testcls.pro/api/categories/maincategories/Non Food"; // API for level 1 categories
           break;
         case "level2":
-          apiUrl = `https://159.65.120.142/api/categories/subcategories/${parentId}`; // API for level 2 categories
+          apiUrl = `https://back.testcls.pro/api/categories/subcategories/${parentId}`; // API for level 2 categories
           break;
         case "level3":
-          apiUrl = `https://159.65.120.142/api/categories/subsubcategories/${parentId}`; // API for level 3 categories
+          apiUrl = `https://back.testcls.pro/api/categories/subsubcategories/${parentId}`; // API for level 3 categories
           break;
         default:
           return;

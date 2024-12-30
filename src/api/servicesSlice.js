@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-const baseUrl = 'https://159.65.120.142/api';
+const baseUrl = 'https://back.testcls.pro/api';
 // Define the API slice
 export const servicesApi = createApi({
   reducerPath: 'servicesApi',

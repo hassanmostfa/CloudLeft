@@ -33,7 +33,7 @@ const PageHeader = ({ name, icon }) => {
       setUploadMessage(""); // Clear previous messages
 
       const response = await axios.post(
-        "https://159.65.120.142/api/upload",
+        "https://back.testcls.pro/api/upload",
         formData,
         {
           headers: {
@@ -98,7 +98,7 @@ const PageHeader = ({ name, icon }) => {
           </button>
           <Link
             className="btn btn-outline-light mx-2"
-            to="https://159.65.120.142/api/export"
+            to="https://back.testcls.pro/api/export"
           >
             <i className="fa fa-download mx-2" aria-hidden="true"></i>
             Export
