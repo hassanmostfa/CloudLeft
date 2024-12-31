@@ -68,6 +68,8 @@ const Bookings = () => {
       const name = booking["Name-En"] || "";
       const brand = booking.Brand || "";
       const barcode = booking.Barcode || "";
+      console.log("Name:", name, "Brand:", brand, "Barcode:", barcode);
+  
       // Assuming the category property in the bookings data is "En Categorie 1"
       const categoryMatch = category? booking["En Categorie 1"] === category : true;
 
@@ -75,7 +77,7 @@ const Bookings = () => {
         categoryMatch &&
         (name.toLowerCase().includes(lowerCaseQuery) ||
           brand.toLowerCase().includes(lowerCaseQuery) ||
-          barcode.toLowerCase().includes(lowerCaseQuery))
+          barcode.includes(lowerCaseQuery))
       );
     });
     setFilteredBookings(filtered);
@@ -111,7 +113,7 @@ const Bookings = () => {
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="Search by name or brand"
+                        placeholder="Search by name, brand, or barcode"
                         value={searchTerm}
                         onChange={handleSearch}
                       />
@@ -132,7 +134,7 @@ const Bookings = () => {
                         ))}
                       </select>
                     </div>
-                  </div>
+                  </div> 
 
                   <div className="table-responsive">
                     {isLoading? (
@@ -157,8 +159,8 @@ const Bookings = () => {
                           </thead>
                           <tbody>
                             {filteredBookings
-                             .slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
-                             .map((product, index) => (
+                            .slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
+                            .map((product, index) => (
                                 <tr key={product.id}>
                                   <td>{currentPage * itemsPerPage + index + 1}</td>
                                   <td>{product.Barcode}</td>

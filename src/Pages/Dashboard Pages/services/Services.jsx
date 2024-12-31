@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from'react';
 import Header from '../../../Components/Admin Components/header/Header';
 import SideNav from '../../../Components/Admin Components/sideNav/SideNav';
 import PageHeader from '../../../Components/Common/page header/PageHeader';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from'react-router-dom';
 import axios from 'axios';
 
 const Services = () => {
@@ -49,13 +49,32 @@ const Services = () => {
   const handleSearch = (e) => {
     const query = e.target.value;
     setSearchQuery(query);
-    fetchServices(query, selectedCategory); // Fetch data with search and selected category
+    applyFilters(query, selectedCategory); // Apply filters with search and selected category
   };
 
   const handleCategoryChange = (e) => {
     const category = e.target.value;
     setSelectedCategory(category);
-    fetchServices(searchQuery, category); // Fetch data with search and selected category
+    applyFilters(searchQuery, category); // Apply filters with search and selected category
+  };
+
+  const applyFilters = (query, category) => {
+    const lowerCaseQuery = query.toLowerCase();
+    const filtered = services.filter((service) => {
+      const name = service["Name-En"] || "";
+      const brand = service.Brand || "";
+      const barcode = service.Barcode || "";
+      // Assuming the category property in the services data is "En Categorie 1"
+      const categoryMatch = category? service["En Categorie 1"] === category : true;
+
+      return (
+        categoryMatch &&
+        (name.toLowerCase().includes(lowerCaseQuery) ||
+          brand.toLowerCase().includes(lowerCaseQuery) ||
+          barcode.includes(lowerCaseQuery))
+      );
+    });
+    setServices(filtered);
   };
 
   const changePage = (page) => {
@@ -88,11 +107,11 @@ const Services = () => {
                       <input
                         type="text"
                         className="form-control"
-                        placeholder="Search by name or brand"
+                        placeholder="Search by name, brand, or barcode"
                         value={searchQuery}
                         onChange={handleSearch}
                       />
-                      <i style={{ left: '440px' , color: '#384a47' }} className="fa fa-search position-absolute" aria-hidden="true"></i>
+                      <i style={{ left: '440px', color: '#384a47' }} className="fa fa-search position-absolute" aria-hidden="true"></i>
                     </div>
                     {/* Category Select */}
                     <div className="col-md-6">
@@ -108,16 +127,16 @@ const Services = () => {
                           </option>
                         ))}
                       </select>
-                    </div>
+                    </div> 
                   </div>
 
                   <div className="table-responsive">
-                    {isLoading ? (
+                    {isLoading? (
                       <div className="center-loader">
                         <div className="loader"></div>
                       </div>
-                    ) : error ? (
-                      <div>{error}</div> // Display error message if there is an error
+                    ) : error? (
+                      <div>{error}</div>
                     ) : (
                       <div>
                         <table className="table text-center table-hover">
@@ -134,8 +153,8 @@ const Services = () => {
                           </thead>
                           <tbody>
                             {services
-                              .slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
-                              .map((service, index) => (
+                             .slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
+                             .map((service, index) => (
                                 <tr key={service.id}>
                                   <td>{currentPage * itemsPerPage + index + 1} </td>
                                   <td>{service.Barcode}</td>
@@ -159,13 +178,15 @@ const Services = () => {
                               ))}
                           </tbody>
                         </table>
+
+                        {/* Pagination */}
                         <div className="pagination d-flex justify-content-center">
                           {Array.from(
                             Array(Math.ceil(services.length / itemsPerPage)).keys()
                           ).map((page) => (
                             <button
                               className={`btn mx-1 btn-outline-dark ${
-                                page === currentPage ? 'active' : ''
+                                page === currentPage? 'active' : ''
                               }`}
                               key={page + 1}
                               onClick={() => changePage(page)}
